@@ -107,4 +107,4 @@
     - STM32F1
 
   meta:
-    cpu: rv32imac
+    cpu: rv-bumblebee

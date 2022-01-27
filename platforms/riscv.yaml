@@ -1,5 +1,5 @@
 - match:
-    cpu: rv32imac
+    cpu: rv-bumblebee
   
   cflags:
     - -march=rv32imac
