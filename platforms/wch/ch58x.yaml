@@ -1,0 +1,52 @@
+- match:
+    variant: 1
+  mem:
+    flash:
+      origin: 0x0
+      size: 192k
+
+    ram:
+      origin: 0x20000000
+      size: 32K
+
+- mem:
+    flash:
+      origin: 0x0
+      size: 448k
+
+    ram:
+      origin: 0x20000000
+      size: 32k
+
+  periph:
+    pfic:
+      PFIC:
+        offset: 0xE000E000
+
+  interrupt:
+    irq:
+      12: SysTick
+      14: SWI
+      16: TMR0
+      17: GPIOA
+      18: GPIOB
+      19: SPI0
+      20: BLE_LLE
+      21: BLE_BB
+      22: USB1
+      23: USB2
+      24: TMR1
+      25: TMR2
+      26: UART0
+      27: UART1
+      28: RTC
+      29: ADC1
+      30: I2C1
+      31: PWMX_SPI1
+      32: TMR3
+      33: UART2
+      34: UART3
+      35: WDOG_BAT
+
+  meta:
+    cpu: rv-wch-v4

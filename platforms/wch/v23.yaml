@@ -1,0 +1,136 @@
+- match:
+    mem: 6
+  mem:
+    flash:
+      origin: 0x08000000
+      size: 32k
+
+    ram:
+      origin: 0x20000000
+      size: 10K
+
+- match:
+    mem: 8
+  mem:
+    flash:
+      origin: 0x08000000
+      size: 64k
+
+    ram:
+      origin: 0x20000000
+      size: 20K
+
+- match:
+    mem: b
+  mem:
+    flash:
+      origin: 0x08000000
+      size: 128k
+
+    ram:
+      origin: 0x20000000
+      size: 32K
+
+- mem:
+    flash:
+      origin: 0x08000000
+      size: 256k
+
+    ram:
+      origin: 0x20000000
+      size: 64k
+
+  periph:
+    pfic:
+      PFIC:
+        offset: 0xE000E000
+
+    stm32_flash:
+      FLASH:
+        type: f1
+        offset: 0x40022000
+
+    stm32_gpio:
+      GPIOA:
+        offset: 0x40010800
+        type: v1
+      GPIOB:
+        offset: 0x40010c00
+        type: v1
+      GPIOC:
+        offset: 0x40011000
+        type: v1
+      GPIOD:
+        offset: 0x40011400
+        type: v1
+      GPIOE:
+        offset: 0x40011800
+        type: v1
+
+    rcc:
+      RCC:
+        offset: 0x40021000
+        type: f1
+        bus:
+          AHB:
+            DMA1: 0
+            SRAM: 2
+            FLITF: 4
+            CRC: 6
+            USBHD: 12
+
+          APB1:
+            TIM2: 0
+            TIM3: 1
+            TIM4: 2
+            WWDG: 11
+            SPI2: 14
+            USART2: 17
+            USART3: 18
+            I2C1: 21
+            I2C2: 22
+            USBD: 23
+            CAN: 25
+            BKP: 27
+            PWR: 28
+            DAC: 29
+
+          APB2:
+            AFIO: 0
+            GPIOA: 2
+            GPIOB: 3
+            GPIOC: 4
+            GPIOD: 5
+            ADC1: 9
+            TIM1: 11
+            SPI1: 12
+            USART1: 14
+
+  interrupt:
+    irq:
+      12: SysTick
+      21: RCC
+      22: EXTI0
+      23: EXTI1
+      24: EXTI2
+      25: EXTI3
+      26: EXTI4
+      34: ADC1
+      36: USB_HP_CAN1_TX
+      35: USB_LP_CAN1_RX0
+      37: CAN1_RX1
+      38: CAN1_SCE
+      53: USART1
+      54: USART2
+      55: USART3
+      58: USBWakeUp
+      77: ETH
+      83: OTG_FS
+      84: USBHSWakeUp
+      85: USBHS
+
+  define:
+    - CH32V23
+
+  meta:
+    cpu: rv-wch-v4

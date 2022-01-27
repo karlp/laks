@@ -1,0 +1,85 @@
+- match:
+    mem: 6
+  mem:
+    flash:
+      origin: 0x08000000
+      size: 32k
+
+    ram:
+      origin: 0x20000000
+      size: 10K
+
+- mem:
+    flash:
+      origin: 0x08000000
+      size: 64k
+
+    ram:
+      origin: 0x20000000
+      size: 20k
+
+  periph:
+    pfic:
+      PFIC:
+        offset: 0xE000E000
+
+    rcc:
+      RCC:
+        offset: 0x40021000
+        type: f1
+        bus:
+          AHB:
+            0: DMA1
+            2: SRAM
+            4: FLITF
+            6: CRC
+            12: USBHD
+
+          APB1:
+            0: TIM2
+            1: TIM3
+            2: TIM4
+            11: WWDG
+            14: SPI2
+            17: USART2
+            18: USART3
+            I2C1: 21
+            I2C2: 22
+            USBD: 23
+            CAN: 25
+            BKP: 27
+            PWR: 28
+            DAC: 29
+
+          APB2:
+            AFIO: 0
+            GPIOA: 2
+            GPIOB: 3
+            GPIOC: 4
+            GPIOD: 5
+            ADC1: 9
+            TIM1: 11
+            SPI1: 12
+            USART1: 14
+
+  interrupt:
+    irq:
+      12: SysTick
+      21: RCC
+      22: EXTI0
+      23: EXTI1
+      24: EXTI2
+      25: EXTI3
+      26: EXTI4
+      34: ADC1
+      53: USART1
+      54: USART2
+      55: USART3
+      58: USBWakeUp
+      59: USBHD
+      
+  define:
+    - CH32V103
+
+  meta:
+    cpu: rv-wch-v3

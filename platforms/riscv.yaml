@@ -34,3 +34,48 @@
 
   define:
     - RISCV
+
+- match:
+    cpu: rv-wch-v3
+
+  cflags:
+    - -march=rv32imac
+    - -mabi=ilp32
+    - -msmall-data-limit=0
+
+  interrupt:
+    exception:
+      1: Reset
+      2: NonMaskable
+      3: Exc
+
+  toolchains:
+    - riscv64-unknown-elf
+    - riscv-none-embed
+
+  define:
+    - RISCV
+
+- match:
+    cpu: rv-wch-v4
+
+  cflags:
+    - -march=rv32imac
+    - -mabi=ilp32
+    - -msmall-data-limit=0
+
+  interrupt:
+    exception:
+      1: Reset
+      2: NonMaskable
+      3: Exc
+      5: ECall_M
+      8: ECall_U
+      9: Breakpoint
+
+  toolchains:
+    - riscv64-unknown-elf
+    - riscv-none-embed
+
+  define:
+    - RISCV
