@@ -1,0 +1,15 @@
+- match:
+    mcu: !re ch32v103.(?P<mem>.)
+  
+  -: !import v103.yaml
+
+# V20x and V30x share a datasheet at least.
+- match:
+    mcu: !re ch32v[23]0(?P<variant>.).(?P<mem>.)
+  
+  -: !import v23.yaml
+
+- match:
+    mcu: !re ch58(?P<variant>.)
+  
+  -: !import ch58x.yaml
