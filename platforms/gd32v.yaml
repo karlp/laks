@@ -105,6 +105,7 @@
 
   define:
     - STM32F1
+    - GD32V
 
   meta:
     cpu: rv-bumblebee
