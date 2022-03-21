@@ -8,6 +8,16 @@ type_aliases = {}
 
 periph = env['PLATFORM_SPEC'].get('periph', {})
 
+if 'ch58x_gpio' in periph:
+    headers.append('ch58x_gpio.h')
+    for name, data in periph['ch58x_gpio'].items():
+        instances.append({
+            'type': 'CH58x_GPIO_t',
+            'name': name,
+            'args': [data['offset']],
+        })
+        type_aliases['Pin'] = 'CH58x_GPIO_t::Pin'
+
 if 'stm32_gpio' in periph:
     headers.append('stm32_gpio.h')
     for name, data in periph['stm32_gpio'].items():

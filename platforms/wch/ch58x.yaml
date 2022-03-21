@@ -19,9 +19,42 @@
       size: 32k
 
   periph:
+    # Nothing like an stm32 flash, this is really a view of "system control"
+    ch58x_flash:
+      FLASH:
+        offset: 0x40001040
+
+    ch58x_gpio:
+      GPIO:
+        offset: 0x40001018
+
     pfic:
       PFIC:
         offset: 0xE000E000
+
+    # Not actually "RCC" at all, but this lets us use same infrastructure...
+    rcc:
+      RCC:
+        offset: 0x4000100c
+        type: ch58x
+        bus:
+          SLPCLK:
+            UART3: 15
+            UART2: 14
+            UART1: 13
+            UART0: 12
+            TIMER3: 11
+            TIMER2: 10
+            TIMER1: 9
+            TIMER0: 8
+            BLE: 7
+            USB2: 5
+            USB1: 4
+            I2C: 3
+            PWM: 2
+            SPI1: 1
+            SPI0: 0
+
 
   interrupt:
     irq:
@@ -47,6 +80,9 @@
       33: UART2
       34: UART3
       35: WDOG_BAT
+
+  define:
+    - CH58x
 
   meta:
     cpu: rv-wch-v4
