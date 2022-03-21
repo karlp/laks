@@ -238,6 +238,18 @@ struct RCC_reg_wb_t {
 	volatile uint32_t C2APB3SMENR;
 };
 
+struct RCC_reg_ch58x_t {
+	volatile uint16_t SLPCLKENR;
+	volatile uint8_t WAKE_CTRL;
+	volatile uint8_t POWER_CTRL;
+	volatile uint16_t POWER_PLAN;
+	volatile uint8_t AUX_POWER_ADJ;
+	uint8_t _reserved1;
+	volatile uint8_t BAT_DET_CTRL;
+	volatile uint8_t BAT_DET_CFG;
+	volatile uint8_t BAT_STATUS;
+};
+
 
 template <typename T>
 class RCC_t : public mmio_ptr<T> {

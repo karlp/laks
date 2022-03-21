@@ -32,6 +32,9 @@ headers = []
 instances = []
 aliases = {}
 
+if 'ch58x_flash' in periph:
+    headers.append('flash_methods.h')
+
 if 'stm32_flash' in periph:
     headers.append('flash_methods.h')
     headers.append('stm32_flash.h')
