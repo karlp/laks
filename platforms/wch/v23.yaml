@@ -67,6 +67,32 @@
         offset: 0x40011800
         type: v1
 
+    stm32_uart:
+      USART1:
+        offset: 0x40013800
+        type: v1
+      USART2:
+        offset: 0x40004400
+        type: v1
+      USART3:
+        offset: 0x40004800
+        type: v1
+      UART4:
+        offset: 0x40004c00
+        type: v1
+      UART5:
+        offset: 0x40005000
+        type: v1
+      UART6:
+        offset: 0x40001800
+        type: v1
+      UART7:
+        offset: 0x40001c00
+        type: v1
+      UART8:
+        offset: 0x40002000
+        type: v1
+
     rcc:
       RCC:
         offset: 0x40021000
