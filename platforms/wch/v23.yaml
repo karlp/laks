@@ -135,25 +135,95 @@
   interrupt:
     irq:
       12: SysTick
+      14: SW
+      16: WWDG
+      17: PVD
+      18: TAMPER
+      19: RTC
+      20: FLASH
       21: RCC
       22: EXTI0
       23: EXTI1
       24: EXTI2
       25: EXTI3
       26: EXTI4
+      27: DMA1_CH1
+      28: DMA1_CH2
+      29: DMA1_CH3
+      30: DMA1_CH4
+      31: DMA1_CH5
+      32: DMA1_CH6
+      33: DMA1_CH7
       34: ADC1
-      36: USB_HP_CAN1_TX
-      35: USB_LP_CAN1_RX0
+      35: USB_HP_CAN1_TX
+      36: USB_LP_CAN1_RX0
       37: CAN1_RX1
       38: CAN1_SCE
+      39: EXTI9_5
+      40: TIM1_BRK
+      41: TIM1_UP
+      42: TIM1_TRG_COM
+      43: TIM1_CC
+      44: TIM2
+      45: TIM3
+      46: TIM4
+      47: I2C1_EV
+      48: I2C1_ER
+      49: I2C2_EV
+      50: I2C2_ER
+      51: SPI1
+      52: SPI2
       53: USART1
       54: USART2
       55: USART3
+      56: EXTI15_10
+      57: RTCAlartm
       58: USBWakeUp
+      59: TIM8_BRK
+      60: TIM8_UP
+      61: TIM8_TRG_COM
+      62: TIM8_CC
+      63: RNG
+      64: FSMC
+      65: SDIO
+      66: TIM5
+      67: SPI3
+      68: UART4
+      69: UART5
+      70: TIM6
+      71: TIM7
+      72: DMA2_CH1
+      73: DMA2_CH2
+      74: DMA2_CH3
+      75: DMA2_CH4
+      76: DMA2_CH5
       77: ETH
+      78: ETH_WKUP
+      79: CAN2_TX
+      80: CAN2_RX0
+      81: CAN2_RX1
+      82: CAN2_SCE
       83: OTG_FS
       84: USBHSWakeUp
       85: USBHS
+      86: DVP
+      87: UART6
+      88: UART7
+      89: UART8
+      90: TIM9_BRK
+      91: TIM9_UP
+      92: TIM9_TRG_COM
+      93: TIM9_CC
+      94: TIM10_BRK
+      95: TIM10_UP
+      96: TIM10_TRG_COM
+      97: TIM10_CC
+      98: DMA2_CH6
+      99: DMA2_CH7
+      100: DMA2_CH8
+      101: DMA2_CH9
+      102: DMA2_CH10
+      103: DMA2_CH11
 
   define:
     - CH32V23
