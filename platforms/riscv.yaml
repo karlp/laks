@@ -43,6 +43,11 @@
     - -mabi=ilp32
     - -msmall-data-limit=0
 
+  periph:
+    pfic:
+      PFIC:
+        offset: 0xe000e000
+
   interrupt:
     exception:
       1: Reset
@@ -63,6 +68,11 @@
     - -march=rv32imac
     - -mabi=ilp32
     - -msmall-data-limit=0
+
+  periph:
+    pfic:
+      PFIC:
+        offset: 0xe000e000
 
   interrupt:
     exception:
