@@ -24,15 +24,9 @@
       15: StorePageFault
 
     internal:
-      0: USI
-      1: SSI
       3: MSI
-      4: UTI
-      5: STI
       7: MTI
-      8: UEI
-      9: SEI
-      11: MEI
+      17: MemoryAccess
   
   toolchains:
     - riscv64-unknown-elf
