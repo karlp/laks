@@ -1,0 +1,14 @@
+#include "interrupt.h"
+
+interrupt::vector_t vectors_pfic[] = {
+    {% for i in range(interrupts.irq | max + 1 ) %}
+        {% if i in interrupts.exception %}
+            interrupt::handler<interrupt::exception::{{ interrupts.exception[i] }}>,
+        {% elif i in interrupts.irq %}
+            interrupt::handler<interrupt::irq::{{ interrupts.irq[i] }}>,
+        {% else %}
+            0,
+        {% endif %}
+    {% endfor %}
+};
+

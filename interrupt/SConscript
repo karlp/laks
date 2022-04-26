@@ -46,6 +46,21 @@ if 'clic' in periph:
         env.Jinja2('vectors_clic.cpp', 'vectors_clic.cpp.j2', interrupts = interrupts),
     ])
 
+if 'pfic' in periph:
+    headers.append('pfic.h')
+    for name, data in periph['pfic'].items():
+        instances.append({
+            'type': 'PFIC_t',
+            'name': name,
+            'args': [data['offset']],
+        })
+
+    aliases['interrupt_ctl'] = 'PFIC'
+    sources.extend([
+        File('dispatch_pfic_direct.cpp'),
+        env.Jinja2('vectors_pfic.cpp', 'vectors_pfic.cpp.j2', interrupts = interrupts),
+    ])
+
 env.Jinja2('interrupt.h', '../templates/periph_instances.h.j2', headers = headers, instances = instances, aliases = aliases)
 
 Return('sources')
