@@ -239,12 +239,15 @@ struct RCC_reg_wb_t {
 };
 
 struct RCC_reg_ch58x_t {
+	volatile uint16_t CLK_SYS_CFG;
+	volatile uint8_t HFCK_PWR_CTRL;
+	uint8_t _reserved1;
 	volatile uint16_t SLPCLKENR;
 	volatile uint8_t WAKE_CTRL;
 	volatile uint8_t POWER_CTRL;
 	volatile uint16_t POWER_PLAN;
 	volatile uint8_t AUX_POWER_ADJ;
-	uint8_t _reserved1;
+	uint8_t _reserved2;
 	volatile uint8_t BAT_DET_CTRL;
 	volatile uint8_t BAT_DET_CFG;
 	volatile uint8_t BAT_STATUS;

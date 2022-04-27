@@ -16,6 +16,15 @@ if 'stm32_uart' in periph:
             'args': [data['offset']],
         })
 
+if 'x16550_uart' in periph:
+    headers.append('x16550_uart.h')
+    for name, data in periph['x16550_uart'].items():
+        instances.append({
+            'type': 'x16550_UART_t<x16550_UART_reg_t>',
+            'name': name,
+            'args': [data['offset']],
+        })
+
 env.Jinja2('uart.h', '../templates/periph_instances.h.j2', headers = headers, instances = instances, aliases = aliases)
 
 Return('sources')
