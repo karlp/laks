@@ -24,13 +24,15 @@ void riscv_interrupt_init() {
 // Should this go as an extra file in startup/entry_riscv_extra.cpp or something?
 [[gnu::constructor(199)]]
 void riscv_setup_extra() {
-
-   // Enable nested and hardware stack
-//	li t0, 0x1f
-//	csrw 0x804, t0
-	// Vendor code loads 0x1f, which is a bunch of reserved bits!
-	//asm volatile("csrw 0x804, %0" :: "r"(0x1f));
+#if defined(CH32V23)
+	// Enable HW Stack, Interrupt nesting(8n3p), hw stk overflow
+	asm volatile("csrw 0x804, %0" :: "r"(0x1f));
+#elif defined(CH58x)
+	// enable HW Stack, Interrupt nesting(2n?p
 	asm volatile("csrw 0x804, %0" :: "r"(0x3));
+#else
+#warning "You have a PFIC, on an unknown CPU? here be dragons!"
+#endif
 
 	// Enable floating point and interrupt
 //   	li t0, 0x6088
