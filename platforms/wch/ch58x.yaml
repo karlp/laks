@@ -32,10 +32,20 @@
       PFIC:
         offset: 0xE000E000
 
+    x16550_uart:
+      UART0:
+        offset: 0x40003000
+      UART1:
+        offset: 0x40003400
+      UART2:
+        offset: 0x40003800
+      UART3:
+        offset: 0x40003c00
+
     # Not actually "RCC" at all, but this lets us use same infrastructure...
     rcc:
       RCC:
-        offset: 0x4000100c
+        offset: 0x40001008
         type: ch58x
         bus:
           SLPCLK:
