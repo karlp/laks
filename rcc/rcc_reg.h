@@ -239,18 +239,31 @@ struct RCC_reg_wb_t {
 };
 
 struct RCC_reg_ch58x_t {
-	volatile uint16_t CLK_SYS_CFG;
-	volatile uint8_t HFCK_PWR_CTRL;
+	volatile uint16_t CLK_SYS_CFG;  // 0x1008
+	volatile uint8_t HFCK_PWR_CTRL; // 0x100a
 	uint8_t _reserved1;
-	volatile uint16_t SLPCLKENR;
-	volatile uint8_t WAKE_CTRL;
+	volatile uint16_t SLPCLKENR;  // 0x100c
+	volatile uint8_t WAKE_CTRL;  // 0x100e
 	volatile uint8_t POWER_CTRL;
-	volatile uint16_t POWER_PLAN;
+	uint8_t _reserved2[16];
+	volatile uint16_t POWER_PLAN; // 0x1020
 	volatile uint8_t AUX_POWER_ADJ;
-	uint8_t _reserved2;
+	uint8_t _reserved3;
 	volatile uint8_t BAT_DET_CTRL;
 	volatile uint8_t BAT_DET_CFG;
-	volatile uint8_t BAT_STATUS;
+	volatile uint8_t BAT_STATUS; // 0x1026
+	uint8_t _reserved4[5];
+	volatile uint16_t INT32K_TUNE; // 0x102c
+	volatile uint8_t XT32K_TUNE;
+	volatile uint8_t CK32K_CONFIG;
+	uint8_t _reserved5[27];  // RTC is in this gap
+	volatile uint8_t PLL_CONFIG; // 0x104b
+	uint8_t _reserved6[2];
+	volatile uint8_t XT32M_TUNE; // 0x104e
+	uint8_t _reserved7;
+	volatile uint16_t OSC_CAL_CNT;
+	volatile uint8_t OSC_CAL_OV_CNT;
+	volatile uint8_t OSC_CAL_CTRL;
 };
 
 

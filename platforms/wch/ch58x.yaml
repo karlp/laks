@@ -19,14 +19,17 @@
       size: 32k
 
   periph:
-    # Nothing like an stm32 flash, this is really a view of "system control"
     ch58x_flash:
       FLASH:
-        offset: 0x40001040
+        offset: 0x40001800
 
     ch58x_gpio:
       GPIO:
         offset: 0x40001018
+
+    ch58x_syscfg:
+      SYSCFG:
+        offset: 0x40001040
 
     pfic:
       PFIC:

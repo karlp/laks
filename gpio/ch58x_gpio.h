@@ -40,12 +40,40 @@ class CH58x_GPIO_t : public mmio_ptr<CH58x_GPIO_reg_t> {
 					Input = 0,
 					Output = 1,
 				};
+				enum Pull {
+					Floating,
+					Up,
+					Down,
+				};
+				enum Drive {
+					Low5,
+					High20,
+				};
 
-				void set_mode(Mode m) {
+				void set_mode(Mode m, Pull p, Drive d) {
 					if (m == Mode::Input) {
 						g->port[port].DIR &= ~(1<<n);
+						if (p == Pull::Up) {
+							g->port[port].PU |= (1<<n);
+						} else {
+							g->port[port].PU &= ~(1<<n);
+						}
+						if (p == Pull::Down) {
+							g->port[port].PD_DRV |= (1<<n);
+						} else {
+							g->port[port].PD_DRV &= ~(1<<n);
+						}
+						if (p == Pull::Floating) {
+							g->port[port].PU &= ~(1<<n);
+							g->port[port].PD_DRV &= ~(1<<n);
+						}
 					} else {
 						g->port[port].DIR |= (1<<n);
+						if (d == Drive::High20) {
+							g->port[port].PD_DRV |= (1<<n);
+						} else {
+							g->port[port].PD_DRV &= ~(1<<n);
+						}
 					}
 				}
 
