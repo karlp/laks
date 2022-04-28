@@ -34,6 +34,13 @@ aliases = {}
 
 if 'ch58x_flash' in periph:
     headers.append('flash_methods.h')
+    headers.append('ch58x_flash.h')
+    for name, data in periph['ch58x_flash'].items():
+        instances.append({
+            'type': 'CH58x_FLASH_t<CH58x_FLASH_reg_t>',
+            'name': name,
+            'args': [data['offset']],
+        })
 
 if 'stm32_flash' in periph:
     headers.append('flash_methods.h')

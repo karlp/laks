@@ -18,6 +18,15 @@ if 'stm32_syscfg' in periph:
             'args': [data['offset']],
         })
 
+if 'ch58x_syscfg' in periph:
+    headers.append('ch58x_syscfg.h')
+    for name, data in periph['ch58x_syscfg'].items():
+        instances.append({
+            'type': 'CH58x_SYSCFG_t<CH58x_SYSCFG_reg_t>',
+            'name': name,
+            'args': [data['offset']],
+        })
+
 env.Jinja2('syscfg.h', '../templates/periph_instances.h.j2', headers = headers, instances = instances, aliases = aliases)
 
 Return('sources')
