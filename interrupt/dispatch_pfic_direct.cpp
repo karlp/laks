@@ -24,6 +24,10 @@ void riscv_interrupt_init() {
 // Should this go as an extra file in startup/entry_riscv_extra.cpp or something?
 [[gnu::constructor(199)]]
 void riscv_setup_extra() {
+	// pipeline and cache?
+	// https://github.com/openwch/ch32v307/issues/16
+	asm volatile("csrw 0xbc0, %0" :: "r"(0x1f));
+
 #if defined(CH32V23)
 	// Enable HW Stack, Interrupt nesting(8n3p), hw stk overflow
 	asm volatile("csrw 0x804, %0" :: "r"(0x1f));
