@@ -8,6 +8,15 @@ type_aliases = {}
 
 periph = env['PLATFORM_SPEC'].get('periph', {})
 
+if 'ch5xx_adc' in periph:
+    headers.append('ch5xx_adc.h')
+    for name, data in periph['ch5xx_adc'].items():
+        instances.append({
+            'type': 'CH5xx_ADC_t',
+            'name': name,
+            'args': [data['offset']],
+        })
+
 if 'stm32_adc' in periph:
     headers.append('stm32_adc.h')
     for name, data in periph['stm32_adc'].items():
