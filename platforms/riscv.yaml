@@ -30,6 +30,7 @@
   
   toolchains:
     - riscv64-unknown-elf
+    - riscv-none-embed
 
   define:
     - RISCV
