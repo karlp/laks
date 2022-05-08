@@ -73,6 +73,9 @@
     pfic:
       PFIC:
         offset: 0xe000e000
+    wch_systick:
+      SYSTICK:
+        offset: 0xe000f000
 
   interrupt:
     exception:

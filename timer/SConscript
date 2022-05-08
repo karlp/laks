@@ -18,6 +18,17 @@ if 'stm32_timer' in periph:
             'args': [data['offset']],
         })
 
+if 'wch_systick' in periph:
+    headers.append('wch_systick.h')
+    for name, data in periph['wch_systick'].items():
+        # There might be others...
+        real_type = data.get('type', 'v4')
+        instances.append({
+            'type': 'WCH_SYSTICK_t<WCH_SYSTICK_reg_%s_t>' % real_type,
+            'name': name,
+            'args': [data['offset']],
+        })
+
 env.Jinja2('timer.h', '../templates/periph_instances.h.j2', headers = headers, instances = instances, aliases = aliases)
 
 Return('sources')
