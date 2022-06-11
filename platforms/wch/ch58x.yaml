@@ -31,6 +31,10 @@
       GPIO:
         offset: 0x40001018
 
+    ch58x_rtc:
+      RTC:
+        offset: 0x40001030
+
     ch58x_syscfg:
       SYSCFG:
         offset: 0x40001040
