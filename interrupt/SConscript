@@ -57,7 +57,9 @@ if 'pfic' in periph:
 
     aliases['interrupt_ctl'] = 'PFIC'
     sources.extend([
-        File('dispatch_pfic_direct.cpp'),
+        #File('dispatch_pfic_00direct.cpp'),
+        File('dispatch_pfic_01vectored.cpp'),
+        #File('dispatch_pfic_11absolute.cpp'),
         env.Jinja2('vectors_pfic.cpp', 'vectors_pfic.cpp.j2', interrupts = interrupts),
     ])
 
