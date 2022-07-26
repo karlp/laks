@@ -107,3 +107,4 @@
 
   meta:
     cpu: rv-wch-v4
+    arch: rv32imac
