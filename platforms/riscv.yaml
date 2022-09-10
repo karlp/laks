@@ -28,6 +28,9 @@
       7: MTI
       17: MemoryAccess
   
+  startup:
+    - riscv_reset_handler
+
   toolchains:
     - riscv64-unknown-elf
     - riscv-none-embed
@@ -54,6 +57,9 @@
       1: Reset
       2: NonMaskable
       3: Exc
+
+  startup:
+    - riscv_reset_handler
 
   toolchains:
     - riscv64-unknown-elf
@@ -87,6 +93,9 @@
       5: ECall_M
       8: ECall_U
       9: Breakpoint
+
+  startup:
+    - riscv_reset_handler
 
   toolchains:
     - riscv64-unknown-elf
