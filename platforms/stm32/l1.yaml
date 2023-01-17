@@ -75,6 +75,14 @@
       GPIOH:
         offset: 0x40021400
 
+    stm32_spi:
+      SPI1:
+        offset: 0x40013000
+      SPI2:
+        offset: 0x40003800
+      SPI3:
+        offset: 0x40003c00
+
     stm32_timer:
       TIM2:
         offset: 0x40000000

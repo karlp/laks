@@ -1,0 +1,23 @@
+Import('env')
+
+headers = []
+instances = []
+sources = []
+aliases = {}
+type_aliases = {}
+
+periph = env['PLATFORM_SPEC'].get('periph', {})
+
+if 'stm32_spi' in periph:
+    headers.append('stm32_spi.h')
+    for name, data in periph['stm32_spi'].items():
+        instances.append({
+            'type': 'STM32_SPI_t<STM32_SPI_reg_%s_t>' % data['type'],
+            'name': name,
+            'args': [data['offset']],
+        })
+
+
+env.Jinja2('spi.h', '../templates/periph_instances.h.j2', headers = headers, instances = instances, aliases = aliases, type_aliases = type_aliases)
+
+Return('sources')

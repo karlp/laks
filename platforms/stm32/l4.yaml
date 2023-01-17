@@ -78,6 +78,14 @@
         offset: 0x40002800
         backup_count: 32
 
+    stm32_spi:
+      SPI1:
+        offset: 0x40013000
+      SPI2:
+        offset: 0x40003800
+      SPI3:
+        offset: 0x40003c00
+
     stm32_syscfg:
       SYSCFG:
         type: wb # Yes, wb has a couple of extras, but otherwise same.

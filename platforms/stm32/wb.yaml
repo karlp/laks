@@ -95,6 +95,12 @@
       SYSCFG:
         offset: 0x40010000
 
+    stm32_spi:
+      SPI1:
+        offset: 0x40013000
+      SPI2:
+        offset: 0x40003800
+
     stm32_timer:
       TIM1:
         offset: 0x40012C00

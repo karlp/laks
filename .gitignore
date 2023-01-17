@@ -19,6 +19,7 @@ rcc/flash.h
 rcc/rcc.h
 rcc/rcc_enums.h
 rtc/rtc.h
+spi/spi.h
 syscfg/syscfg.h
 timer/timer.h
 usb/usb.h
