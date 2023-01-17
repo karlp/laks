@@ -17,6 +17,12 @@
       GPIOH:
         offset: 0x50001c00
 
+    stm32_spi:
+      SPI1:
+        offset: 0x40013000
+      SPI2:
+        offset: 0x40003800
+
     stm32_syscfg:
       SYSCFG:
         offset: 0x40010000

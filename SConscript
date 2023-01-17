@@ -15,6 +15,7 @@ env.Append(
 		env.SConscript('pwr/SConscript'),
 		env.SConscript('rcc/SConscript'),
 		env.SConscript('rtc/SConscript'),
+		env.SConscript('spi/SConscript'),
 		env.SConscript('syscfg/SConscript'),
 		env.SConscript('timer/SConscript'),
 		env.SConscript('uart/SConscript'),

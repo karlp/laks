@@ -32,6 +32,15 @@
       GPIOE:
         offset: 0x40011800
         type: v1
+
+    stm32_spi:
+      SPI1:
+        offset: 0x40013000
+      SPI2:
+        offset: 0x40003800
+      SPI3:
+        offset: 0x40003c00
+
     stm32_timer:
       TIM1:
         offset: 0x40012c00
