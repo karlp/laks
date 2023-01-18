@@ -40,4 +40,17 @@ class CH58x_SPI_t : public mmio_ptr<T> {
 
 			return ptr()->BUFFER;
 		}
+
+		/// Starts a dma transfer, you should poll for completion.
+		/// \param buf NOTE, this _must_ be in RAM! (hw limitation)
+		/// \param len
+		void send_block_dma(uint8_t *buf, uint16_t len) {
+			ptr()->DMA_BEGIN = (uint32_t)buf;
+			ptr()->DMA_END = (uint32_t)(buf + len);
+			ptr()->TOTAL_COUNT = len;
+			// Clear completion flags...
+			ptr()->INT_FLAG = (1<<0) | (1<<3);
+			// no interrupts, just poll for it..
+			ptr()->CTRL_CFG |= (1<<0); // dma enable
+		}
 };
