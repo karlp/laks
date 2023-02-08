@@ -31,6 +31,10 @@
       GPIO:
         offset: 0x40001018
 
+    ch58x_pwm:
+      PWM:
+        offset: 0x40005000
+
     ch58x_rtc:
       RTC:
         offset: 0x40001030
@@ -44,6 +48,16 @@
     ch58x_syscfg:
       SYSCFG:
         offset: 0x40001040
+
+    ch58x_gptimer:
+      TMR0:
+        offset: 0x40002000
+      TMR1:
+        offset: 0x40002400
+      TMR2:
+        offset: 0x40002800
+      TMR3:
+        offset: 0x40002c00
 
     pfic:
       PFIC:
