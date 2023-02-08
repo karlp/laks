@@ -29,6 +29,24 @@ if 'wch_systick' in periph:
             'args': [data['offset']],
         })
 
+if 'ch58x_gptimer' in periph:
+    headers.append('ch58x_gptimer.h')
+    for name, data in periph['ch58x_gptimer'].items():
+        instances.append({
+            'type': 'CH58x_GPTIMER_t<CH58x_GPTIMER_reg_t>',
+            'name': name,
+            'args': [data['offset']],
+        })
+
+if 'ch58x_pwm' in periph:
+    headers.append('ch58x_pwm.h')
+    for name, data in periph['ch58x_pwm'].items():
+        instances.append({
+            'type': 'CH58x_PWM_t<CH58x_PWM_reg_t>',
+            'name': name,
+            'args': [data['offset']],
+        })
+
 env.Jinja2('timer.h', '../templates/periph_instances.h.j2', headers = headers, instances = instances, aliases = aliases)
 
 Return('sources')
