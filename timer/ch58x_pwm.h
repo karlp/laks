@@ -25,13 +25,33 @@ struct CH58x_PWM_reg_t {
 template <typename T>
 class CH58x_PWM_t : public mmio_ptr<T> {
     public:
-        using mmio_ptr<T>::ptr;
+	using mmio_ptr<T>::ptr;
+	enum DataBits {
+		Eight = 0,
+		Seven = 1,
+		Six = 2,
+		Five = 3,
+	};
+
 	void enable(uint8_t channel) {
 		ptr()->OUT_EN |= (1<< (channel - 4));
 	}
 
 	void set(uint8_t channel, uint8_t value) {
 		ptr()->DATA8[channel - 4] = value;
+	}
+
+	void polarity_active_low(uint8_t channel, bool enable) {
+		if (enable) {
+			ptr()->POLARITY |= (1 << (channel - 4));
+		} else {
+			ptr()->POLARITY &= ~(1 << (channel - 4));
+		}
+	}
+
+	void data_bits(enum DataBits bits) {
+		ptr()->CONFIG &= (3 << 2);
+		ptr()->CONFIG |= (bits << 2);
 	}
 };
 
