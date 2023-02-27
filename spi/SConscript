@@ -8,11 +8,11 @@ type_aliases = {}
 
 periph = env['PLATFORM_SPEC'].get('periph', {})
 
-if 'ch58x_spi' in periph:
-    headers.append('ch58x_spi.h')
-    for name, data in periph['ch58x_spi'].items():
+if 'ch5xx_spi' in periph:
+    headers.append('ch5xx_spi.h')
+    for name, data in periph['ch5xx_spi'].items():
         instances.append({
-            'type': 'CH58x_SPI_t<CH58x_SPI_reg_t>',
+            'type': 'CH5xx_SPI_t<CH5xx_SPI_reg_t>',
             'name': name,
             'args': [data['offset']],
         })

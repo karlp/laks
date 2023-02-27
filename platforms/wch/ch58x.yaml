@@ -39,7 +39,7 @@
       RTC:
         offset: 0x40001030
 
-    ch58x_spi:
+    ch5xx_spi:
       SPI0:
         offset: 0x40004000
       SPI1:
