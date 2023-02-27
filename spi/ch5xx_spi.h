@@ -2,10 +2,14 @@
 
 #include <mmio/mmio.h>
 
-struct CH58x_SPI_reg_t {
+// This is used on, at least, CH5[678][789] and CH57[13]
+// It appears to be used on all the 32bit MCUs, that are _not_
+// CH32V, ie, the not the ones that are "stm32style"
+// It is _not_ used on the 8051 CH559 and friends.
+struct CH5xx_SPI_reg_t {
 	volatile uint8_t CTRL_MOD;
 	volatile uint8_t CTRL_CFG;
-	volatile uint8_t INTER_EN;
+	volatile uint8_t INT_EN;
 	union {
 		volatile uint8_t CLOCK_DIV;
 		volatile uint8_t PERIPH_PRE;
@@ -29,7 +33,7 @@ struct CH58x_SPI_reg_t {
 };
 
 template <typename T>
-class CH58x_SPI_t : public mmio_ptr<T> {
+class CH5xx_SPI_t : public mmio_ptr<T> {
 	public:
 		using mmio_ptr<T>::ptr;
 		uint8_t transfer_byte(uint8_t out = 0) {
