@@ -65,4 +65,14 @@ class CH5xx_SPI_t : public mmio_ptr<T> {
 				ptr()->CTRL_MOD |= (1<<4);
 			}
 		}
+
+		/// We know it works one way, but what do they really mean?
+		/// \param yes
+		void command_mode(bool yes) {
+			if (yes) {
+				ptr()->CTRL_MOD |= (1<<3);
+			} else {
+				ptr()->CTRL_MOD &= ~(1<<3);
+			}
+		}
 };
