@@ -22,7 +22,7 @@ struct CH5xx_SPI_reg_t {
 	volatile uint16_t TOTAL_COUNT;
 	uint16_t _reserved2;
 	volatile uint8_t FIFO;
-	uint8_t _reserved3[3];
+	uint8_t _reserved3[2];
 	volatile uint8_t FIFO_COUNT1; // Explicit duplicate?
 	// not all instances have DMA
 	volatile uint16_t DMA_NOW;
@@ -56,5 +56,13 @@ class CH5xx_SPI_t : public mmio_ptr<T> {
 			ptr()->INT_FLAG = (1<<0) | (1<<3);
 			// no interrupts, just poll for it..
 			ptr()->CTRL_CFG |= (1<<0); // dma enable
+		}
+
+		void fifo_out(bool outmode) {
+			if (outmode) {
+				ptr()->CTRL_MOD &= ~(1<<4);
+			} else {
+				ptr()->CTRL_MOD |= (1<<4);
+			}
 		}
 };
