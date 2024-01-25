@@ -30,6 +30,8 @@ if 'nvic' in periph:
         env.Jinja2('vectors_nvic.cpp', 'vectors_nvic.cpp.j2', interrupts = interrupts),
     ])
 
+    sources.extend([File('kinetis_fopt.cpp')])
+
 if 'clic' in periph:
     headers.append('clic.h')
     for name, data in periph['clic'].items():

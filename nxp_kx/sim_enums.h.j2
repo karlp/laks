@@ -1,0 +1,24 @@
+// This file is auto-generated from a template!
+// You should reconsider editing!
+#pragma once
+
+namespace sim {
+    {% for bus, devices in buses.items() %}
+        enum {{ bus }}_dev {
+            {% for name, num in devices.items() %}
+                {{ name }} = 1 << {{ num }},
+            {% endfor %}
+        };
+
+        template <typename T>
+        void enable(const T& sim, {{ bus }}_dev dev) {
+            sim->{{ bus.split('_')[0] }}ENR{{ bus.split('_')[1] if '_' in bus else '' }} |= dev;
+        }
+
+        template <typename T>
+        void disable(const T& sim, {{ bus }}_dev dev) {
+            sim->{{ bus.split('_')[0] }}ENR{{ bus.split('_')[1] if '_' in bus else '' }} &= ~(dev);
+        }
+
+    {% endfor %}
+}

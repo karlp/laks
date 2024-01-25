@@ -1,0 +1,48 @@
+Import('env')
+
+
+periph = env['PLATFORM_SPEC'].get('periph', {})
+
+def template(n, of, p):
+    headers = []
+    instances = []
+    sources = []
+    aliases = {}
+    if n in p:
+        headers.append(f"{n}.h")
+        for name, data in p[n].items()
+            instances.append({
+                'type': f"{n.upper()}_t<{n.upper()}_reg_t>",
+                'name': name,
+                'args': [data['offset']]
+            })
+    env.Jinja2(of, '../templates/periph_instances.h.j2', headers = headers, instances = instances, aliases = aliases)
+
+
+template("nxp_k70_sim", "sim.h", periph)
+#template("nxp_k70_")
+
+
+# if 'nxp_k70_sim' in periph:
+#     headers.append('k70_sim.h')
+#     for name, data in periph['ch58x_flash'].items():
+#         instances.append({
+#             'type': 'CH58x_FLASH_t<CH58x_FLASH_reg_t>',
+#             'name': name,
+#             'args': [data['offset']],
+#         })
+
+# if 'stm32_flash' in periph:
+#     headers.append('flash_methods.h')
+#     headers.append('stm32_flash.h')
+#     for name, data in periph['stm32_flash'].items():
+#         instances.append({
+#             'type': 'STM32_FLASH_t<STM32_FLASH_reg_%s_t>' % data['type'],
+#             'name': name,
+#             'args': [data['offset']],
+#         })
+
+# env.Jinja2('flash.h', '../templates/periph_instances.h.j2', headers = headers, instances = instances, aliases = aliases)
+
+
+Return('sources')

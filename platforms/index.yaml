@@ -4,6 +4,11 @@
   -: !import wch/index.yaml
 
 - match:
+    mcu: !re k\d\d
+
+  -: !import nxp_kx/index.yaml
+
+- match:
     mcu: !re stm32
   
   -: !import stm32/index.yaml

@@ -1,0 +1,180 @@
+- match:
+    variant: 1M0
+  mem:
+    vectors:
+      origin: 0x0
+      size: 1k
+    fopt:
+      origin: 0x400
+      size: 0x10
+    flash:
+      # 1M less kinetis hell
+      origin: 0x410
+      size: 0xffbf0
+
+    ram:
+      # Actually, two regions, but we don't care about that right now...
+      origin: 0x1FFF0000
+      size: 128K
+
+- mem:
+    vectors:
+      origin: 0x0
+      size: 1k
+    fopt:
+      origin: 0x400
+      size: 0x10
+    flash:
+      # 512k less kinetis hell
+      origin: 0x410
+      size: 0x7fbf0
+
+    ram:
+      # Actually, two regions, but we don't care about that right now...
+      origin:  0x1FFF0000
+      size: 128k
+
+
+  periph:
+    kx_pcr:
+      PCRA:
+        offset: 0x40049000
+      PCRB:
+        offset: 0x4004a000
+      PCRC:
+        offset: 0x4004b000
+      PCRD:
+        offset: 0x4004c000
+      PCRE:
+        offset: 0x4004d000
+      PCRF:
+        offset: 0x4004e000
+
+    nxp_k70_sim:
+      SIM:
+        offset: 0x40047000
+        bus:
+          SCGC1:
+            UART5: 11
+            UART4: 10
+            OSC1: 5
+          SCGC2:
+            DAC1: 13
+            DAC0: 12
+            ENET: 0
+          SCGC3:
+            ADC3: 28
+            ADC1: 27
+            FTM3: 25
+            FTM2: 24
+            LCDC: 22
+            ESDHC: 17
+            SAI1: 15
+            DDR: 14
+            DSPI2: 12
+            NFC: 8
+            FLEXCAN1: 4
+            RNGA: 0
+          SCGC4:
+            LLWU: 28
+            VREF: 20
+            CMP: 19
+            USBFS: 18
+            UART3: 13
+            UART2: 12
+            UART1: 11
+            UART0: 10
+            IIC1: 7
+            IIC0: 6
+            CMT: 2
+            EWM: 1
+          SCGC5:
+            PORTF: 14
+            PORT3: 13
+            PORTD: 12
+            PORTC: 11
+            PORTB: 10
+            PORTA: 9
+            TSI: 5
+            DRYICESECREG: 3
+            DRYICE: 2
+            LPTIMER: 0
+          SCGC6:
+            RTC: 29
+            ADC2: 28
+            ADC0: 27
+            FTM1: 25
+            FTM0: 24
+            PIT: 23
+            PDB: 22
+            USBDCD: 21
+            USBHS: 20
+            CRC: 18
+            SAI0: 15
+            DSPI1: 13
+            DSPI0: 12
+            FLEXCAN0: 4
+            DMAMUX1: 2
+            DMAMUX0: 1
+          SCGC7:
+            MPU: 2
+            DMA: 1
+            FLEXBUS: 0
+
+
+    kx_gpio:
+      GPIO:
+        offset: 0x400FF000  # magic cross bar something...
+        
+    kx_uart:
+      UART0:
+        offset: 0x4006a000
+      UART1:
+        offset: 0x4006b000
+      UART2:
+        offset: 0x4006c000
+      UART3:
+        offset: 0x4006d000
+      UART4:
+        offset: 0x400ea000
+      UART5:
+        offset: 0x400eb000
+    
+
+    # Not actually "RCC" at all, but this lets us use same infrastructure...
+    # rcc:
+    #   RCC:
+    #     offset: 0x40001008
+    #     type: ch58x
+    #     bus:
+    #       SLPCLK:
+    #         UART3: 15
+    #         UART2: 14
+    #         UART1: 13
+    #         UART0: 12
+    #         TIMER3: 11
+    #         TIMER2: 10
+    #         TIMER1: 9
+    #         TIMER0: 8
+    #         BLE: 7
+    #         USB2: 5
+    #         USB1: 4
+    #         I2C: 3
+    #         PWM: 2
+    #         SPI1: 1
+    #         SPI0: 0
+
+
+  interrupt:
+    irq:
+      33: MCM
+      44: UART0_LON
+      45: UART0_Status
+      46: UART0_Error
+      # lots more
+
+  define:
+    - K70X
+
+  meta:
+    cpu: cortex-m4f
