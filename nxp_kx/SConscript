@@ -1,25 +1,33 @@
 Import('env')
 
+sources = []
 
 periph = env['PLATFORM_SPEC'].get('periph', {})
 
-def template(n, of, p):
+def template(n, of, p, bus=False):
+    if bus:
+        # Gross hack
+        buses = p[n]['SIM']['bus']
+        env.Jinja2('sim_enums.h', 'sim_enums.h.j2', buses = buses)
+
     headers = []
     instances = []
-    sources = []
+    isources = []
     aliases = {}
     if n in p:
         headers.append(f"{n}.h")
-        for name, data in p[n].items()
+        for name, data in p[n].items():
             instances.append({
                 'type': f"{n.upper()}_t<{n.upper()}_reg_t>",
                 'name': name,
                 'args': [data['offset']]
             })
     env.Jinja2(of, '../templates/periph_instances.h.j2', headers = headers, instances = instances, aliases = aliases)
+    return isources
 
 
-template("nxp_k70_sim", "sim.h", periph)
+sources.extend(template("nxp_sim_k70", "sim.h", periph, bus=True))
+sources.extend(template("nxp_wdog_k70", "wdog.h", periph))
 #template("nxp_k70_")
 
 

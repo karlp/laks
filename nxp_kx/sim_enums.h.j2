@@ -12,12 +12,12 @@ namespace sim {
 
         template <typename T>
         void enable(const T& sim, {{ bus }}_dev dev) {
-            sim->{{ bus.split('_')[0] }}ENR{{ bus.split('_')[1] if '_' in bus else '' }} |= dev;
+            sim->{{ bus.split('_')[0] }}{{ bus.split('_')[1] if '_' in bus else '' }} |= dev;
         }
 
         template <typename T>
         void disable(const T& sim, {{ bus }}_dev dev) {
-            sim->{{ bus.split('_')[0] }}ENR{{ bus.split('_')[1] if '_' in bus else '' }} &= ~(dev);
+            sim->{{ bus.split('_')[0] }}{{ bus.split('_')[1] if '_' in bus else '' }} &= ~(dev);
         }
 
     {% endfor %}

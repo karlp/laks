@@ -12,6 +12,7 @@ env.Append(
 		env.SConscript('exti/SConscript'),
 		env.SConscript('gpio/SConscript'),
 		env.SConscript('interrupt/SConscript'),
+		env.SConscript('nxp_kx/SConscript'),
 		env.SConscript('pwr/SConscript'),
 		env.SConscript('rcc/SConscript'),
 		env.SConscript('rtc/SConscript'),

@@ -36,7 +36,7 @@
 
 
   periph:
-    kx_pcr:
+    nxp_pcr_k70:
       PCRA:
         offset: 0x40049000
       PCRB:
@@ -50,7 +50,7 @@
       PCRF:
         offset: 0x4004e000
 
-    nxp_k70_sim:
+    nxp_sim_k70:
       SIM:
         offset: 0x40047000
         bus:
@@ -90,7 +90,7 @@
             EWM: 1
           SCGC5:
             PORTF: 14
-            PORT3: 13
+            PORTE: 13
             PORTD: 12
             PORTC: 11
             PORTB: 10
@@ -122,11 +122,11 @@
             FLEXBUS: 0
 
 
-    kx_gpio:
+    nxp_gpio_k70:
       GPIO:
         offset: 0x400FF000  # magic cross bar something...
         
-    kx_uart:
+    nxp_uart_k70:
       UART0:
         offset: 0x4006a000
       UART1:
@@ -140,29 +140,9 @@
       UART5:
         offset: 0x400eb000
     
-
-    # Not actually "RCC" at all, but this lets us use same infrastructure...
-    # rcc:
-    #   RCC:
-    #     offset: 0x40001008
-    #     type: ch58x
-    #     bus:
-    #       SLPCLK:
-    #         UART3: 15
-    #         UART2: 14
-    #         UART1: 13
-    #         UART0: 12
-    #         TIMER3: 11
-    #         TIMER2: 10
-    #         TIMER1: 9
-    #         TIMER0: 8
-    #         BLE: 7
-    #         USB2: 5
-    #         USB1: 4
-    #         I2C: 3
-    #         PWM: 2
-    #         SPI1: 1
-    #         SPI0: 0
+    nxp_wdog_k70:
+      WDOG:
+        offset: 0x40052000
 
 
   interrupt:
