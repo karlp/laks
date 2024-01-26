@@ -36,7 +36,7 @@
 
 
   periph:
-    nxp_pcr_k70:
+    nxp_pcr_kx:
       PCRA:
         offset: 0x40049000
       PCRB:
@@ -122,9 +122,19 @@
             FLEXBUS: 0
 
 
-    nxp_gpio_k70:
-      GPIO:
-        offset: 0x400FF000  # magic cross bar something...
+    nxp_gpio_kx:
+      GPIOA:
+        offset: 0x400FF000
+      GPIOB:
+        offset: 0x400FF040
+      GPIOC:
+        offset: 0x400FF080
+      GPIOD:
+        offset: 0x400FF0c0
+      GPIOE:
+        offset: 0x400FF100
+      GPIOF:
+        offset: 0x400FF140
         
     nxp_uart_k70:
       UART0:

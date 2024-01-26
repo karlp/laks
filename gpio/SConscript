@@ -18,6 +18,25 @@ if 'ch58x_gpio' in periph:
         })
         type_aliases['Pin'] = 'CH58x_GPIO_t::Pin'
 
+# if 'nxp_gpio_kx' in periph:
+#     headers.append('nxp_gpio_kx.h')
+#     for name, data in periph['nxp_gpio_kx'].items():
+#         instances.append({
+#             'type': 'NXP_GPIO_KX_t',
+#             'name': name,
+#             'args': [data['offset']],
+#         })
+#         type_aliases['Pin'] = 'NXP_GPIO_KX_t::Pin'
+
+if 'nxp_pcr_kx' in periph:
+    headers.append('nxp_gpio_kx.h')
+    for name, data in periph['nxp_pcr_kx'].items():
+        instances.append({
+            'type': 'NXP_PCR_KX_t<NXP_PCR_KX_reg_t>',
+            'name': name,
+            'args': [data['offset']],
+        })
+
 if 'stm32_gpio' in periph:
     headers.append('stm32_gpio.h')
     for name, data in periph['stm32_gpio'].items():
