@@ -10,14 +10,14 @@ struct NXP_PCR_KX_reg_t {
 	volatile uint32_t ISFR;
 };
 
-// struct NXP_GPIO_KX_reg_t {
-// 	volatile uint32_t PDOR;
-// 	volatile uint32_t PSOR;
-// 	volatile uint32_t PCOR;
-// 	volatile uint32_t PTOR;
-// 	volatile uint32_t PDIR;
-// 	volatile uint32_t PDDR;
-// };
+struct NXP_GPIO_KX_reg_t {
+	volatile uint32_t PDOR;
+	volatile uint32_t PSOR;
+	volatile uint32_t PCOR;
+	volatile uint32_t PTOR;
+	volatile uint32_t PDIR;
+	volatile uint32_t PDDR;
+};
 
 // FIXME - unhappy with this, too awkward to use
 template <typename T>
@@ -41,50 +41,85 @@ class NXP_PCR_KX_t : public mmio_ptr<T> {
 };
 
 
-// class NXP_GPIO_KX_t : public mmio_ptr<NXP_GPIO_KX_reg_t> {
-// 	public:
-// 		using mmio_ptr<NXP_GPIO_KX_t>::ptr;
+class NXP_GPIO_KX_t : public mmio_ptr<NXP_GPIO_KX_reg_t> {
+	public:
+		using mmio_ptr<NXP_GPIO_KX_reg_t>::ptr;
 		
-// 		class Pin {
-// 			private:
-// 				const NXP_GPIO_KX_t& g;
+		class Pin {
+			private:
+				const NXP_GPIO_KX_t& g;
 			
-// 			public:
-// 				const int n;
-// 				constexpr Pin(const NXP_GPIO_KX_t& gpio, const int pin) : g(gpio), n(pin) {}
+			public:
+				const int n;
+				constexpr Pin(const NXP_GPIO_KX_t& gpio, const int pin) : g(gpio), n(pin) {}
 
-// 				void set_out() {
-// 					g->PDDR |= (1<<n);
-// 				}
-// 				void set_in() {
-// 					g->PDDR &= ~(1<<n);
-// 				}
+				void set_out() {
+					g->PDDR |= (1<<n);
+				}
+				void set_in() {
+					g->PDDR &= ~(1<<n);
+				}
 				
-// 				void on() {
-// 					g->PSOR = 1 << n;
-// 				}
+				void on() {
+					g->PSOR = 1 << n;
+				}
 				
-// 				void off() {
-// 					g->PCOR = 1 << n;
-// 				}
+				void off() {
+					g->PCOR = 1 << n;
+				}
 				
-// 				void set(bool value) {
-// 					if(value) {
-// 						on();
-// 					} else {
-// 						off();
-// 					}
-// 				}
+				void set(bool value) {
+					if(value) {
+						on();
+					} else {
+						off();
+					}
+				}
 				
-// 				bool get() {
-// 					return g->PDIR & (1 << n);
-// 				}
+				bool get() {
+					return g->PDIR & (1 << n);
+				}
 				
-// 				void toggle() {
-// 					g->PTOR = (1<<n);
-// 				}
+				void toggle() {
+					g->PTOR = (1<<n);
+				}
 
-// 		};
+		};
+
+		class PinArray {
+			private:
+				const NXP_GPIO_KX_t& g;
+				int f;
+				int l;
+				
+				// constexpr uint32_t mask1() {
+				// 	return ((2 << l) - 1) ^ ((1 << f) - 1);
+				// }
+				
+				// constexpr uint32_t mask2() {
+				// 	return ((4 << (l * 2)) - 1) ^ ((1 << (f * 2)) - 1);
+				// }
+			
+			public:
+				constexpr PinArray(const NXP_GPIO_KX_t& gpio, int first, int last) : g(gpio), f(first), l(last) {}
+				
+				// void set(uint16_t value) {
+				// 	value <<= f;
+				// 	g->BSRR = ((~value & mask1()) << 16) | (value & mask1());
+				// }
+				
+				// uint16_t get() {
+				// 	return (g->IDR & mask1()) >> f;
+				// }
+		};
 		
-// };
+		constexpr Pin operator[](int pin) const {
+			return Pin(*this, pin);
+		}
+		
+		constexpr PinArray array(int first, int last) const {
+			return PinArray(*this, first, last);
+		}
+		
+};
 

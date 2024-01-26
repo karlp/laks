@@ -50,6 +50,10 @@
       PCRF:
         offset: 0x4004e000
 
+    nxp_rcm_k70:
+      RCM:
+        offset: 0x4007f000
+
     nxp_sim_k70:
       SIM:
         offset: 0x40047000
