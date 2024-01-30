@@ -26,6 +26,8 @@ def template(n, of, p, bus=False):
     return isources
 
 
+sources.extend(template("nxp_mcg_k70", "mcgx.h", periph))
+sources.extend(template("nxp_osc_k70", "osc.h", periph))
 sources.extend(template("nxp_rcm_k70", "rcm.h", periph))
 sources.extend(template("nxp_sim_k70", "sim.h", periph, bus=True))
 sources.extend(template("nxp_wdog_k70", "wdog.h", periph))

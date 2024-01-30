@@ -139,7 +139,16 @@
         offset: 0x400FF100
       GPIOF:
         offset: 0x400FF140
-        
+    
+    nxp_mcg_k70:
+      MCG:
+        offset: 0x40064000
+    nxp_osc_k70:
+      OSC0:
+        offset: 0x40065000
+      OSC1:
+        offset: 0x400e5000
+
     nxp_uart_k70:
       UART0:
         offset: 0x4006a000
