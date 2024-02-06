@@ -2,7 +2,7 @@ from SCons.Script import *
 
 def SelectMCU(env, mcu, variant_dir = None):
 
-	spec = env.PlatformSpec(mcu = mcu)
+	spec = env.PlatformSpec(mcu = mcu, variant_dir=variant_dir)
 
 	if len(spec) <= 1:
 		print('Unknown MCU: %s' % mcu)
@@ -42,9 +42,14 @@ def SelectMCU(env, mcu, variant_dir = None):
 		CPPDEFINES = ['LAKS'],
 	)
 
-	env.Replace(
-		LINK_SCRIPT = 'generated.ld',
-	)
+	if variant_dir:
+		env.Replace(
+			LINK_SCRIPT = f'{variant_dir}/ld_scripts/generated.ld',
+		)
+	else:
+		env.Replace(
+			LINK_SCRIPT = 'generated.ld',
+		)
 
 	env.Append(
 		CCFLAGS = spec.get('cflags', []),
