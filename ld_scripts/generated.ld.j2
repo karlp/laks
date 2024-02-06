@@ -10,14 +10,18 @@ MEMORY {
 
 SECTIONS {
 	. = 0;
-	
+
+	{% if 'vectors' in mem.keys() %}
 	.vectors : ALIGN(16) SUBALIGN(16) {
 		KEEP(*(.vectors))
 	} > vectors
+	{% endif %}
 
+	{% if 'fopt' in mem.keys() %}
 	.fopt : ALIGN(16) {
 		KEEP(*(.fopt))
 	} > fopt
+	{% endif %}
 	
 	.init_array : ALIGN(4) SUBALIGN(4) {
 		PROVIDE(_init_array_start = .);
