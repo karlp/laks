@@ -5,6 +5,8 @@ sources = []
 periph = env['PLATFORM_SPEC'].get('periph', {})
 
 def template(n, of, p, bus=False):
+    if n not in periph:
+        return []
     if bus:
         # Gross hack
         buses = p[n]['SIM']['bus']
