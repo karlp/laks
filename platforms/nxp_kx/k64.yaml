@@ -1,0 +1,249 @@
+- match:
+    variant: 1M0
+  mem:
+    vectors:
+      origin: 0x0
+      size: 1k
+    fopt:
+      origin: 0x400
+      size: 0x10
+    flash:
+      # 1M less kinetis hell
+      origin: 0x410
+      size: 0xffbf0
+
+    ram:
+      # Actually, two regions, but we don't care about that right now...
+      origin: 0x1FFF0000
+      size: 256k
+
+- mem:
+    vectors:
+      origin: 0x0
+      size: 1k
+    fopt:
+      origin: 0x400
+      size: 0x10
+    flash:
+      # 512k less kinetis hell
+      origin: 0x410
+      size: 0x7fbf0
+
+    ram:
+      # Actually, two regions, but we don't care about that right now...
+      origin:  0x1FFF0000
+      size: 256k
+
+
+  periph:
+    nxp_pcr_kx:
+      PCRA:
+        offset: 0x40049000
+      PCRB:
+        offset: 0x4004a000
+      PCRC:
+        offset: 0x4004b000
+      PCRD:
+        offset: 0x4004c000
+      PCRE:
+        offset: 0x4004d000
+
+    nxp_rcm_k70:
+      RCM:
+        offset: 0x4007f000
+
+    nxp_sim_k70:
+      SIM:
+        offset: 0x40047000
+        bus:
+          SCGC1:
+            UART5: 11
+            UART4: 10
+            I2C2: 6
+          SCGC2:
+            DAC1: 13
+            DAC0: 12
+            ENET: 0
+          SCGC3:
+            ADC1: 27
+            FTM3: 25
+            FTM2: 24
+            SDHC: 17
+            SPI2: 12
+            RNGA: 0
+          SCGC4:
+            VREF: 20
+            CMP: 19
+            USBFS: 18
+            UART3: 13
+            UART2: 12
+            UART1: 11
+            UART0: 10
+            I2C1: 7
+            I2C0: 6
+            CMT: 2
+            EWM: 1
+          SCGC5:
+            PORTE: 13
+            PORTD: 12
+            PORTC: 11
+            PORTB: 10
+            PORTA: 9
+            LPTIMER: 0
+          SCGC6:
+            DAC0_AIPS0: 31
+            RTC: 29
+            ADC0: 27
+            FTM2_AIPS0: 26
+            FTM1: 25
+            FTM0: 24
+            PIT: 23
+            PDB: 22
+            USBDCD: 21
+            CRC: 18
+            I2S0: 15
+            SPI1: 13
+            SPI0: 12
+            RNGA_AIPS0: 9
+            FLEXCAN0: 4
+            DMAMUX0: 1
+            FTF: 0
+          SCGC7:
+            MPU: 2
+            DMA: 1
+            FLEXBUS: 0
+
+
+    nxp_gpio_kx:
+      GPIOA:
+        offset: 0x400FF000
+      GPIOB:
+        offset: 0x400FF040
+      GPIOC:
+        offset: 0x400FF080
+      GPIOD:
+        offset: 0x400FF0c0
+      GPIOE:
+        offset: 0x400FF100
+    
+    nxp_mcg_k70:
+      MCG:
+        offset: 0x40064000
+    nxp_osc_k70:
+      OSC0:
+        offset: 0x40065000
+
+    nxp_uart_k70:
+      UART0:
+        offset: 0x4006a000
+      UART1:
+        offset: 0x4006b000
+      UART2:
+        offset: 0x4006c000
+      UART3:
+        offset: 0x4006d000
+      UART4:
+        offset: 0x400ea000
+      UART5:
+        offset: 0x400eb000
+
+    nxp_wdog_k70:
+      WDOG:
+        offset: 0x40052000
+
+
+  interrupt:
+    # use cmsis names maybe?
+    irq:
+      0: DMAChannel0
+      1: DMAChannel1
+      2: DMAChannel2
+      3: DMAChannel3
+      4: DMAChannel4
+      5: DMAChannel5
+      6: DMAChannel6
+      7: DMAChannel7
+      8: DMAChannel8
+      9: DMAChannel9
+      10: DMAChannel10
+      11: DMAChannel11
+      12: DMAChannel12
+      13: DMAChannel13
+      14: DMAChannel14
+      15: DMAChannel15
+      16: DMAError
+      17: MCM
+      18: FlashCommandComplete
+      19: FlashReadCollision
+      20: ModeController
+      21: LLWU
+      22: WDOG
+      23: RNG
+      24: I2C0
+      25: I2C1
+      26: SPI0
+      27: SPI1
+      28: I2S0_TX
+      29: I2S0_RX
+      #30: Unused
+      31: UART0_Status
+      32: UART0_Error
+      32: UART1_Status
+      34: UART1_Error
+      35: UART2_Status
+      36: UART2_Error
+      37: UART3_Status
+      38: UART3_Error
+      39: ADC0
+      40: CMP0
+      41: CMP1
+      42: FTM0
+      43: FTM1
+      44: FTM2
+      45: CMT
+      46: RTC_Alarm
+      47: RTC_Seconds
+      48: PIT0
+      49: PIT1
+      50: PIT2
+      51: PIT3
+      52: PDB
+      53: USB_OTG
+      54: USB_CD
+      #55: Unused
+      56: DAC0
+      57: MCG
+      58: LPTimer
+      59: PortA
+      60: PortB
+      61: PortC
+      62: PortD
+      63: PortE
+      64: Software
+      65: SPI2
+      66: UART4_Status
+      67: UART4_Error
+      68: UART5_Status
+      69: UART5_Error
+      70: CMP2
+      71: FTM3
+      72: DAC1
+      73: ADC1
+      74: I2C2
+      75: CAN0
+      76: CAN0_BusOff
+      77: CAN0_Error
+      78: CAN0_WarningTX
+      79: CAN0_WarningRX
+      80: CAN0_WakeUp
+      81: SDHC
+      82: ETH_1588
+      83: ETH_TX
+      84: ETH_RX
+      85: ETH_Error
+
+  define:
+    - MK64x
+
+  meta:
+    cpu: cortex-m4f
