@@ -4,7 +4,8 @@
 
 #include <type_traits>
 
-struct x16550_UART_reg_t {
+struct X16550_UART_reg_t
+{
 	volatile uint8_t MCR;
 	volatile uint8_t IER;
 	volatile uint8_t FCR;
@@ -13,7 +14,8 @@ struct x16550_UART_reg_t {
 	volatile uint8_t LSR;
 	volatile uint8_t MSR;
 	uint8_t _reserved1;
-	union {
+	union
+	{
 		volatile uint8_t RBR;
 		volatile uint8_t THR;
 	};
@@ -25,11 +27,11 @@ struct x16550_UART_reg_t {
 	volatile uint8_t ADR;
 };
 
-
 template <typename T>
-class x16550_UART_t : public mmio_ptr<T> {
-    public:
-        using mmio_ptr<T>::ptr;
+class X16550_UART_t : public mmio_ptr<T>
+{
+public:
+	using mmio_ptr<T>::ptr;
 
 	enum IIRFlag {
 		NoInterrupt = 1,
@@ -66,5 +68,4 @@ class x16550_UART_t : public mmio_ptr<T> {
 		while(!rxne());
 		return read();
 	}
-
 };
