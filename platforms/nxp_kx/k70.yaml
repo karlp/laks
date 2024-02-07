@@ -72,10 +72,11 @@
             FTM3: 25
             FTM2: 24
             LCDC: 22
-            ESDHC: 17
+            SDHC: 17
             SAI1: 15
+            I2S1: 15
             DDR: 14
-            DSPI2: 12
+            SPI2: 12
             NFC: 8
             FLEXCAN1: 4
             RNGA: 0
@@ -115,8 +116,9 @@
             USBHS: 20
             CRC: 18
             SAI0: 15
-            DSPI1: 13
-            DSPI0: 12
+            I2S0: 15
+            SPI1: 13
+            SPI0: 12
             FLEXCAN0: 4
             DMAMUX1: 2
             DMAMUX0: 1
