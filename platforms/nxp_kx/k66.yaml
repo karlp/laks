@@ -124,7 +124,7 @@
       OSC0:
         offset: 0x40065000
 
-    nxp_uart_k70:
+    nxp_uart:
       UART0:
         offset: 0x4006a000
       UART1:
@@ -136,6 +136,7 @@
       UART4:
         offset: 0x400ea000
       LPUART0:
+        type: lpv1
         offset: 0x400c4000
 
     nxp_wdog_k70:

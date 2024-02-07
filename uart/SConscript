@@ -7,24 +7,28 @@ aliases = {}
 
 periph = env['PLATFORM_SPEC'].get('periph', {})
 
-if 'stm32_uart' in periph:
-    headers.append('stm32_uart.h')
-    for name, data in periph['stm32_uart'].items():
-        instances.append({
-            'type': 'STM32_UART_t<STM32_UART_reg_%s_t>' % data['type'],
-            'name': name,
-            'args': [data['offset']],
-        })
+def template(n, of, p, deftype=None):
+    headers = []
+    instances = []
+    isources = []
+    aliases = {}
+    if n in p:
+        headers.append(f"{n}.h")
+        for name, data in p[n].items():
+            subtype = data.get("type", deftype)
+            if subtype:
+                subtype += "_"
+            instances.append({
+                'type': f"{n.upper()}_t<{n.upper()}_reg_{subtype}t>",
+                'name': name,
+                'args': [data['offset']]
+            })
+        env.Jinja2(of, '../templates/periph_instances.h.j2', headers = headers, instances = instances, aliases = aliases)
+    return isources
 
-if 'x16550_uart' in periph:
-    headers.append('x16550_uart.h')
-    for name, data in periph['x16550_uart'].items():
-        instances.append({
-            'type': 'x16550_UART_t<x16550_UART_reg_t>',
-            'name': name,
-            'args': [data['offset']],
-        })
 
-env.Jinja2('uart.h', '../templates/periph_instances.h.j2', headers = headers, instances = instances, aliases = aliases)
+sources.extend(template("nxp_uart", "uart.h", periph, "kxv1"))
+sources.extend(template("stm32_uart", "uart.h", periph))
+sources.extend(template("x16550_uart", "uart.h", periph))
 
 Return('sources')

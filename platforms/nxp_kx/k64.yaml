@@ -113,7 +113,6 @@
             DMA: 1
             FLEXBUS: 0
 
-
     nxp_gpio_kx:
       GPIOA:
         offset: 0x400FF000
@@ -133,7 +132,7 @@
       OSC0:
         offset: 0x40065000
 
-    nxp_uart_k70:
+    nxp_uart:
       UART0:
         offset: 0x4006a000
       UART1:
