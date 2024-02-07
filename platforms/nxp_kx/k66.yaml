@@ -68,8 +68,8 @@
             UART2: 12
             UART1: 11
             UART0: 10
-            IIC1: 7
-            IIC0: 6
+            I2C1: 7
+            I2C0: 6
             CMT: 2
             EWM: 1
           SCGC5:
