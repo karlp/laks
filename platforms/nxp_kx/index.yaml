@@ -1,5 +1,5 @@
 - match:
-    mcu: !re k70f.(?P<mem>...)
+    mcu: !re mk70f.(?P<mem>...)
   
   -: !import k70.yaml
 

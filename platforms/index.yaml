@@ -4,7 +4,7 @@
   -: !import wch/index.yaml
 
 - match:
-    mcu: !re k\d\d
+    mcu: !re mk\d\d
 
   -: !import nxp_kx/index.yaml
 
