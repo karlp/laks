@@ -2,7 +2,7 @@ from SCons.Script import *
 
 def SelectMCU(env, mcu, variant_dir = None):
 
-	spec = env.PlatformSpec(mcu = mcu, variant_dir=variant_dir)
+	spec = env.PlatformSpec(mcu = mcu.lower(), variant_dir=variant_dir)
 
 	if len(spec) <= 1:
 		print('Unknown MCU: %s' % mcu)

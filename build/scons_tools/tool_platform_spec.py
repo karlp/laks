@@ -15,7 +15,7 @@ class ReMatcher(Matcher):
         self.pattern = pattern
     
     def match(self, meta, key):
-        m = re.match(self.pattern, meta.get(key, ''), flags=re.IGNORECASE)
+        m = re.match(self.pattern, meta.get(key, ''))
 
         if m:
             meta.update(m.groupdict())
