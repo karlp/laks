@@ -16,7 +16,8 @@ extern funcp_t _init_array_end;
 extern funcp_t _fini_array_start;
 extern funcp_t _fini_array_end;
 
-void __attribute__((naked)) entry() {
+void laks_entry(void)
+{
 	// Load .data from rom image.
 	uint32_t* rp = &_data_rom;
 	uint32_t* wp = &_data_start;
@@ -56,6 +57,11 @@ void __attribute__((naked)) entry() {
 	
 	// Halt.
 	while(1);
+}
+
+void __attribute__((naked, weak)) entry()
+{
+	laks_entry();
 }
 
 extern "C" void __cxa_pure_virtual() {
