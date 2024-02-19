@@ -6,8 +6,9 @@ sources = []
 aliases = {}
 
 interrupts = env['PLATFORM_SPEC'].get('interrupt', {})
+meta = env['PLATFORM_SPEC']['meta']
 
-env.Jinja2('interrupt_enums.h', 'interrupt_enums.h.j2', interrupts = interrupts)
+env.Jinja2('interrupt_enums.h', 'interrupt_enums.h.j2', interrupts = interrupts, meta = meta)
 headers.append('interrupt_enums.h')
 
 sources.append(env.Jinja2('default_handlers.cpp', 'default_handlers.cpp.j2', interrupts = interrupts))
@@ -27,7 +28,7 @@ if 'nvic' in periph:
     aliases['interrupt_ctl'] = 'NVIC'
 
     sources.extend([
-        env.Jinja2('vectors_nvic.cpp', 'vectors_nvic.cpp.j2', interrupts = interrupts),
+        env.Jinja2('vectors_nvic.cpp', 'vectors_nvic.cpp.j2', interrupts = interrupts, meta = meta),
     ])
 
     sources.extend([File('kinetis_fopt.cpp')])
@@ -45,7 +46,7 @@ if 'clic' in periph:
 
     sources.extend([
         File('dispatch_clic.cpp'),
-        env.Jinja2('vectors_clic.cpp', 'vectors_clic.cpp.j2', interrupts = interrupts),
+        env.Jinja2('vectors_clic.cpp', 'vectors_clic.cpp.j2', interrupts = interrupts, meta = meta),
     ])
 
 if 'pfic' in periph:
@@ -60,7 +61,7 @@ if 'pfic' in periph:
     aliases['interrupt_ctl'] = 'PFIC'
     sources.extend([
         File('dispatch_pfic_direct.cpp'),
-        env.Jinja2('vectors_pfic.cpp', 'vectors_pfic.cpp.j2', interrupts = interrupts),
+        env.Jinja2('vectors_pfic.cpp', 'vectors_pfic.cpp.j2', interrupts = interrupts, meta = meta),
     ])
 
 env.Jinja2('interrupt.h', '../templates/periph_instances.h.j2', headers = headers, instances = instances, aliases = aliases)
