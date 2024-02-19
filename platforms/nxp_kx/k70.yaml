@@ -36,6 +36,10 @@
 
 
   periph:
+    nxp_mpu_kx:
+      MPU:
+        offset: 0x4000D000
+
     nxp_pcr_kx:
       PCRA:
         offset: 0x40049000
