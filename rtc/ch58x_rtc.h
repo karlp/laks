@@ -18,6 +18,17 @@ class CH58x_RTC_t : public mmio_ptr<T> {
 public:
 	using mmio_ptr<T>::ptr;
 
+	enum RTC_Timer {
+		T0_125S = 0,
+		T0_25S = 1,
+		T0_5S = 2,
+		T1_0S = 3,
+		T2_0S = 4,
+		T4_0S = 5,
+		T8_0S = 6,
+		T16_0S = 7,
+	};
+
 	// Extremely naiive, no leap years, no time before 2020. just... basic go
 	void init(int year, int month, int day, int hour, int min, int sec) const
 	{
@@ -55,5 +66,15 @@ public:
 		int out = s2 * 2 * 1000;
 		out += c32 * 1000 / 32768;
 		return out;
+	}
+
+	/**
+	 * This will enable rtc timer interrupts at the desired freq.
+	 * @param tim
+	 */
+	void start_timer(const enum RTC_Timer tim) const {
+		SYSCFG.unlock_safe();
+		ptr()->MODE_CTRL = (1<<4) | tim;
+		SYSCFG.lock_safe();
 	}
 };
