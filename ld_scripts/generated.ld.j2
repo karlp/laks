@@ -14,6 +14,15 @@ SECTIONS {
 	.vectors : ALIGN(16) SUBALIGN(16) {
 		KEEP(*(.vectors))
 	} > flash
+
+/* WCH HACKS - though they do shit with vectors here too */
+	.highcode : ALIGN(4) SUBALIGN(4) {
+		PROVIDE(_highcode_start = .);
+		*(.highcode)
+		*(.highcode.*)
+		PROVIDE(_highcode_end = .);
+	} > ram AT > flash
+
 	
 	.init_array : ALIGN(4) SUBALIGN(4) {
 		PROVIDE(_init_array_start = .);
@@ -37,6 +46,7 @@ SECTIONS {
 		*(.rodata.*)
 		*(.srodata)
 		*(.srodata.*)
+                *(.sdata2.*) /* WCH hacks */
 		*(.glue_7t)
 		*(.glue_7)
 		*(.gcc*)
@@ -71,4 +81,5 @@ SECTIONS {
 	PROVIDE(_ram_end = ORIGIN(ram) + LENGTH(ram));
 
 	PROVIDE(_data_rom = LOADADDR(.data));
+	PROVIDE(_highcode_rom = LOADADDR(.highcode));
 }
