@@ -41,6 +41,28 @@ class x16550_UART_t : public mmio_ptr<T> {
 		ModemChange = 0,
 	};
 
+	/**
+	 * Basic init for plain simply full duplex, fifo mode.
+	 * @param sysclk required to calculate baud
+	 * @param baud desired baud
+	 * @param rx_fifo either 0, 1, 2,or 3 for 1,2,4,7 byte rx fifo
+	 * @param lcr the full LCR register, this is parity/wordsize stuff default is 8n1
+	 */
+	void init(int sysclk, int baud, uint8_t rx_fifo = 0x3, uint8_t lcr = 0x3) const
+	{
+		// Flush and enable fifos. (ie, 16550 mode, not 16450 mode)
+		ptr()->FCR = (rx_fifo << 6) | 0x7;
+		ptr()->LCR = lcr; // default is 8n1
+		ptr()->IER = (1 << 6); // enable TXD output
+		ptr()->DIV = 1; // "standard" prescaler
+
+		auto dl = sysclk * 2 / 1 / 16 / baud;
+		ptr()->DL = dl;
+		// hard enabling irqs in the _periph_ is ok right?
+		ptr()->IER |= (1 << 0); // RECV_RDY irqs
+		ptr()->MCR |= (1 << 3); // peripheral IRQ enable..
+	}
+
 	bool txe() const {
 		return ptr()->LSR & (1 << 5);
 	}
