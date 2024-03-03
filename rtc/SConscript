@@ -4,6 +4,7 @@ headers = []
 instances = []
 sources = []
 aliases = {}
+type_aliases = {}
 
 periph = env['PLATFORM_SPEC'].get('periph', {})
 
@@ -21,13 +22,15 @@ if 'stm32_rtc' in periph:
 if 'ch58x_rtc' in periph:
     headers.append('ch58x_rtc.h')
     for name, data in periph['ch58x_rtc'].items():
+        t = 'CH58x_RTC_t<CH58x_RTC_reg_t>'
         instances.append({
-            'type': 'CH58x_RTC_t<CH58x_RTC_reg_t>',
+            'type': t,
             'name': name,
             'args': [data['offset']],
         })
+        type_aliases['RTC_Timer'] = '%s::RTC_Timer' % t
 
-env.Jinja2('rtc.h', '../templates/periph_instances.h.j2', headers = headers, instances = instances, aliases = aliases)
+env.Jinja2('rtc.h', '../templates/periph_instances.h.j2', headers = headers, instances = instances, aliases = aliases, type_aliases = type_aliases)
 
 Return('sources')
 
