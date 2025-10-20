@@ -33,10 +33,11 @@ if 'nxp_pcr_kx' in periph:
     # shared with gpio
     for name, data in periph['nxp_pcr_kx'].items():
         instances.append({
-            'type': 'NXP_PCR_KX_t<NXP_PCR_KX_reg_t>',
+            'type': 'NXP_PCR_KX_t',
             'name': name,
             'args': [data['offset']],
         })
+        type_aliases['PinMux'] = 'NXP_PCR_KX_t::PinMux'
 
 if 'stm32_gpio' in periph:
     headers.append('stm32_gpio.h')
