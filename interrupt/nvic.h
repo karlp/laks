@@ -42,6 +42,10 @@ class NVIC_t : public mmio_ptr<NVIC_reg_t> {
             ptr()->ISER[int(n) >> 5] = 1 << (int(n) & 0x1f);
         }
 
+        void disable(interrupt::irq n) const {
+            ptr()->ICER[int(n) >> 5] = 1 << (int(n) & 0x1f);
+        }
+
         void set_priority(interrupt::exception n, uint8_t priority) const {
             SCB->SHPR[int(n) - 4] = priority;
         }

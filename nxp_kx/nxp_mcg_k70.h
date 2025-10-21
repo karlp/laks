@@ -38,4 +38,10 @@ public:
 	// void disable() const {
 	// 	ptr()->STCTRLH &= ~(1<<0);
 	// }
+	bool plls_is_pll(void) const {
+		return ptr()->S & (1<<5);
+	}
+	bool pll_is_locked(void) const {
+		return ptr()->S & (1<<6);
+	}
 };
