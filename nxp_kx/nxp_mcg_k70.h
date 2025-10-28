@@ -30,18 +30,51 @@ class NXP_MCG_K70_t : public mmio_ptr<T>
 {
 public:
 	using mmio_ptr<T>::ptr;
-	// void unlock() const {
-	// 	ptr()->UNLOCK = 0xc520;
-	// 	ptr()->UNLOCK = 0xd928;
-	// }
-
-	// void disable() const {
-	// 	ptr()->STCTRLH &= ~(1<<0);
-	// }
+	void set_range(int range) const
+	{
+		ptr()->C2 &= ~(0x3 << 4);
+		ptr()->C2 |= ((range & 0x3) << 4);
+	}
+	void set_gain_high(bool on) const {
+		if (on) {
+			ptr()->C2 |= (1<<3);
+		} else {
+			ptr()->C2 &= ~(1<<3);
+		}
+	}
+	void set_ext_ref_osc(bool on) const {
+		if (on) {
+			ptr()->C2 |= (1<<2);
+		} else {
+			ptr()->C2 &= ~(1<<2);
+		}
+	}
 	bool plls_is_pll(void) const {
 		return ptr()->S & (1<<5);
 	}
 	bool pll_is_locked(void) const {
 		return ptr()->S & (1<<6);
+	}
+
+	void config_pll(int prdiv, int vdiv, int enable_mode) const
+	{
+		// off, but configure prdiv
+		ptr()->C5 = prdiv & 0x1f;
+		ptr()->C6 &= ~(0x1f);
+		ptr()->C6 |= vdiv & 0xf;
+		ptr()->C6 |= (1<<6); // turn it on again
+		while (!pll_is_locked()) {
+			;
+		}
+	}
+
+	void clock_source(int source) const
+	{
+		ptr()->C1 &= ~(0x3<<6);
+		ptr()->C1 |= (source & 0x3) << 6;
+	}
+
+	int clock_source(void) const {
+		return (ptr()->S >> 2) & 0x3;
 	}
 };
