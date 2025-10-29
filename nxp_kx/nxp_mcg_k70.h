@@ -61,7 +61,7 @@ public:
 		// off, but configure prdiv
 		ptr()->C5 = prdiv & 0x1f;
 		ptr()->C6 &= ~(0x1f);
-		ptr()->C6 |= vdiv & 0xf;
+		ptr()->C6 |= vdiv & 0x1f;
 		ptr()->C6 |= (1<<6); // turn it on again
 		while (!pll_is_locked()) {
 			;
