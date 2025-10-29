@@ -77,4 +77,15 @@ public:
 	int clock_source(void) const {
 		return (ptr()->S >> 2) & 0x3;
 	}
+
+	void set_fcr_div(int div) const
+	{
+		ptr()->SC &= ~(7<<1);
+		ptr()->SC |= ((div & 0x7) << 1);
+	}
+
+	void set_fr_div(int div) const
+	{
+		ptr()->C1 = (ptr()->C1 & ~(7<<3)) | ((div & 0x7) << 3);
+	}
 };
